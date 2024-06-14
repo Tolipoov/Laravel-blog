@@ -10,6 +10,13 @@ use App\Http\Controllers\Admin\Category\UpdateController;
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Admin\Main\MainController;
+use App\Http\Controllers\Admin\Post\CreateController as PostCreateController;
+use App\Http\Controllers\Admin\Post\DeleteController as PostDeleteController;
+use App\Http\Controllers\Admin\Post\EditController as PostEditController;
+use App\Http\Controllers\Admin\Post\IndexController as PostIndexController;
+use App\Http\Controllers\Admin\Post\ShowController as PostShowController;
+use App\Http\Controllers\Admin\Post\StoreController as PostStoreController;
+use App\Http\Controllers\Admin\Post\UpdateController as PostUpdateController;
 use App\Http\Controllers\Admin\Tag\CreateController as TagCreateController;
 use App\Http\Controllers\Admin\Tag\DeleteController as TagDeleteController;
 use App\Http\Controllers\Admin\Tag\EditController as TagEditController;
@@ -45,6 +52,17 @@ Route::group(['namespace' => 'Main'], function () {
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
     Route::group(['namespace' => 'Main'], function () {
         Route::get('/', [MainController::class, 'index'])->name('main.main');
+    });
+
+    // Post Route 
+    Route::group(['namespace' => 'Post', 'prefix' => 'posts'], function () {
+        Route::get('/', [PostIndexController::class, 'index'])->name('admin.post.index');
+        Route::get('/create', [PostCreateController::class, 'index'])->name('admin.post.create');
+        Route::post('/', [PostStoreController::class, 'index'])->name('admin.post.store');
+        Route::get('/{post}', [PostShowController::class, 'index'])->name('admin.post.show');
+        Route::get('/{post}/edit', [PostEditController::class, 'index'])->name('admin.post.edit');
+        Route::patch('/{post}', [PostUpdateController::class, 'index'])->name('admin.post.update');
+        Route::delete('/{post}', [PostDeleteController::class, 'index'])->name('admin.post.delete');
     });
 
     // Category Route 
