@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{asset('assets/vendors/flag-icon-css/css/flag-icon.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/vendors/font-awesome/css/all.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/vendors/aos/aos.css')}}">
+    <link rel="stylesheet" href="{{asset('plugins/summernote/summernote-bs4.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <script src="{{asset('assets/vendors/jquery/jquery.min.js')}}"></script>
     <script src="{{asset('js/loader.js')}}"></script>
@@ -129,12 +130,19 @@
     <script src="{{asset('assets/vendors/popper.js/popper.min.js')}}"></script>
     <script src="{{asset('assets/vendors/bootstrap/dist/js/bootstrap.min.js')}}"></script>
     <script src="{{asset('assets/vendors/aos/aos.js')}}"></script>
+    <script src="{{asset('plugins/summernote/summernote-bs4.min.s')}}"></script>
     <script src="{{asset('js/main.js')}}"></script>
     <script>
         AOS.init({
             duration: 1000
         });
-      </script>
+    </script>
+    
+    <script>
+        $(document).ready(function() {
+            $('#summernote').summernote();
+        });
+    </script>
 </body>
 
 </html>

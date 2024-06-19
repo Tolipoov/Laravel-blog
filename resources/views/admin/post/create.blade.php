@@ -26,8 +26,8 @@
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
-         <div class="col-md-6">
-          <form action="{{route('admin.post.store')}}" method="POST">
+         <div class="col-md-10">
+          <form action="{{route('admin.post.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="card-body">
               <div class="form-group">
@@ -37,6 +37,57 @@
                   <p>{{$message}}</p>
                 @enderror
               </div>
+              <div class="form-group">
+                <textarea id="summernote" name="content"></textarea>
+                @error('content')
+                  <p>{{$message}}</p>
+                @enderror
+              </div>
+
+              <div class="form-group">
+                <label>Custom Select</label>
+                <select class="custom-select" name="category_id">
+                  @foreach ($categories as $category)
+                  <option value="{{$category->id}}">{{$category->title}}</option>
+                  @endforeach
+                  @error('content')
+                    <p>{{$category_id}}</p>
+                  @enderror
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="mainImage">Main Image</label>
+                <div class="input-group">
+                  <div class="custom-file">
+                    <input type="file" class="custom-file-input" name="main_image" id="mainImage">
+                    <label class="custom-file-label" for="mainImage">Choose file</label>
+                  </div>
+                  <div class="input-group-append">
+                    <span class="input-group-text">Upload</span>
+                  </div>
+                </div>
+                  @error('main_image')
+                   <p>{{$message}}</p>
+                  @enderror
+              </div>
+
+              <div class="form-group">
+                <label for="singleImage">Single Image</label>
+                <div class="input-group">
+                  <div class="custom-file">
+                    <input type="file" class="custom-file-input" name="single_image" id="singleImage">
+                    <label class="custom-file-label" for="singleImage">Choose file</label>
+                  </div>
+                  <div class="input-group-append">
+                    <span class="input-group-text">Upload</span>
+                  </div>
+                </div>
+                @error('simgle_image')
+                  <p>{{$message}}</p>
+                @enderror
+              </div>
+              
               <div class="form-group">
                 <input type="submit" class="btn btb-block btn-success w-100" value="Create post">
               </div>

@@ -37,6 +37,7 @@
                     <tr>
                       <th>ID</th>
                       <th>Title</th>
+                      <th>Category</th>
                       <th colspan="3" class="text-center">Action</th>
                     
                     </tr>
@@ -47,6 +48,7 @@
                     <tr>
                       <td>{{$post->id}}</td>
                       <td>{{$post->title}}</td>
+                      <td>{{$post->category_id}}</td>
                       <td><a href="{{route('admin.post.show', $post->id )}}"><i class="far fa-eye"></i></a></td>
                       <td><a href="{{route('admin.post.edit', $post->id )}}"><i class="fas fa-pencil-alt"></i></a></td>
                       <td>
