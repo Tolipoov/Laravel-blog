@@ -8,6 +8,8 @@
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Select2 -->
+  <link rel="stylesheet" href="{{asset('plugins/select2/css/select2.min.css')}}">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{asset('plugins/fontawesome-free/css/all.min.css')}}">
   <!-- Ionicons -->
@@ -20,6 +22,7 @@
   <link rel="stylesheet" href="{{asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
   <!-- Daterange picker -->
   <link rel="stylesheet" href="{{asset('plugins/daterangepicker/daterangepicker.css')}}">
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -59,10 +62,16 @@
     <div class="sidebar">
         <ul class="pt-3 nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item ">
-                <a href="{{route('admin.post.index')}}" class="nav-link">
-                  <i class="nav-icon fas fa-clipboard"></i>
+                <a href="{{route('admin.user.index')}}" class="nav-link">
+                  <i class="nav-icon fas fa-user"></i>
                   <p> Posts</p>
                 </a>
+            </li>
+            <li class="nav-item ">
+              <a href="{{route('admin.post.index')}}" class="nav-link">
+                <i class="nav-icon fas fa-clipboard"></i>
+                <p> Posts</p>
+              </a>
             </li>
             <li class="nav-item ">
                 <a href="{{route('admin.category.index')}}" class="nav-link">
@@ -114,8 +123,11 @@
   $.widget.bridge('uibutton', $.ui.button)
 </script>
 <!-- Bootstrap 4 -->
-<!-- daterangepicker -->
+<!-- Select2 -->
+<script src="{{asset('plugins/select2/js/select2.full.min.js')}}"></script>
+<!-- moment -->
 <script src="{{asset('plugins/moment/moment.min.js')}}"></script>
+<!-- daterangepicker -->
 <script src="{{asset('plugins/daterangepicker/daterangepicker.js')}}"></script>
 <script src="{{asset('plugins/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
 <!-- overlayScrollbars -->
@@ -134,7 +146,9 @@
   
   $(document).ready(function () {
   bsCustomFileInput.init()
-})
+  });
+
+  $('.select2').select2()
 </script>
 
 </body>

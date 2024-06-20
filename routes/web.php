@@ -24,6 +24,13 @@ use App\Http\Controllers\Admin\Tag\IndexController as TagIndexController;
 use App\Http\Controllers\Admin\Tag\ShowController as TagShowController;
 use App\Http\Controllers\Admin\Tag\StoreController as TagStoreController;
 use App\Http\Controllers\Admin\Tag\UpdateController as TagUpdateController;
+use App\Http\Controllers\Admin\User\CreateController as UserCreateController;
+use App\Http\Controllers\Admin\User\DeleteController as UserDeleteController;
+use App\Http\Controllers\Admin\User\EditController as UserEditController;
+use App\Http\Controllers\Admin\User\IndexController as UserIndexController;
+use App\Http\Controllers\Admin\User\ShowController as UserShowController;
+use App\Http\Controllers\Admin\User\StoreController as UserStoreController;
+use App\Http\Controllers\Admin\User\UpdateController as UserUpdateController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Main\IndexController;
 use App\Http\Controllers\PostController;
@@ -49,7 +56,7 @@ Route::group(['namespace' => 'Main'], function () {
     Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
 });
 
-Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth', 'admin'] ], function () {
     Route::group(['namespace' => 'Main'], function () {
         Route::get('/', [MainController::class, 'index'])->name('main.main');
     });
@@ -85,6 +92,17 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
         Route::get('/{tag}/edit', [TagEditController::class, 'index'])->name('admin.tag.edit');
         Route::patch('/{tag}', [TagUpdateController::class, 'index'])->name('admin.tag.update');
         Route::delete('/{tag}', [TagDeleteController::class, 'index'])->name('admin.tag.delete');
+    });
+
+    // User Route 
+    Route::group(['namespace' => 'User', 'prefix' => 'users'], function () {
+    Route::get('/', [UserIndexController::class, 'index'])->name('admin.user.index');
+    Route::get('/create', [UserCreateController::class, 'index'])->name('admin.user.create');
+    Route::post('/', [UserStoreController::class, 'index'])->name('admin.user.store');
+    Route::get('/{user}', [UserShowController::class, 'index'])->name('admin.user.show');
+    Route::get('/{user}/edit', [UserEditController::class, 'index'])->name('admin.user.edit');
+    Route::patch('/{user}', [UserUpdateController::class, 'index'])->name('admin.user.update');
+    Route::delete('/{user}', [UserDeleteController::class, 'index'])->name('admin.user.delete');
     });
    
 
