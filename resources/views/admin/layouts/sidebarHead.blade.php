@@ -40,7 +40,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{route('main.main')}}" class="nav-link">Home</a>
+        <a href="{{route('admin.main.index')}}" class="nav-link">Home</a>
       </li>
 
     </ul>
@@ -48,9 +48,10 @@
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
-        <a class="nav-link" data-widget="fullscreen" href="" role="button">
-          <i class="fas fa-expand-arrows-alt"></i>
-        </a>
+       <form action="{{route('logout')}}" method="POST">
+        @csrf
+        <input class="btn btn-outline-primary" type="submit" value="Logout">
+       </form>
       </li>
     </ul>
   </nav>
@@ -62,11 +63,17 @@
     <div class="sidebar">
         <ul class="pt-3 nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item ">
-                <a href="{{route('admin.user.index')}}" class="nav-link">
-                  <i class="nav-icon fas fa-user"></i>
-                  <p> Posts</p>
+                <a href="{{route('admin.main.index')}}" class="nav-link">
+                  <i class="nav-icon fas fa-home"></i>
+                  <p> Home</p>
                 </a>
-            </li>
+            </li>  
+            <li class="nav-item ">
+              <a href="{{route('admin.user.index')}}" class="nav-link">
+                <i class="nav-icon fas fa-user"></i>
+                <p> Users</p>
+              </a>
+          </li>
             <li class="nav-item ">
               <a href="{{route('admin.post.index')}}" class="nav-link">
                 <i class="nav-icon fas fa-clipboard"></i>

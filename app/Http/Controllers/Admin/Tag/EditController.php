@@ -8,6 +8,6 @@ use App\Models\Tag;
 class EditController extends Controller
 {
     public function index(Tag $tag){
-        return view('admin.tag.edit', ['Tag' => $tag]);
+        return view('admin.tag.edit', ['tag' => $tag]);
     }
 }

@@ -3,7 +3,7 @@
 @section('content')
 <div class="container" style="margin-top:240px">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-7">
             <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
 
@@ -62,9 +62,7 @@
                                         {{ __('Forgot Your Password?') }}
                                     </a>
                                 @endif
-                                <a href={{'/register'}} style="color:#000; text-decoration:none">
-                                    {{ __('Register') }}
-                                </a>
+                               
 
                             </div>
                         </div>
