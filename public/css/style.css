@@ -5,6 +5,7 @@
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+
 :root {
     --blue: #007bff;
     --indigo: #6610f2;
@@ -10388,7 +10389,7 @@ a.text-dark:focus {
 }
 
 .blog .blog-post {
-    margin-bottom: 119px;
+    margin-bottom: 40px;
 }
 .blog .blog-post .blog-post-thumbnail-wrapper {
     height: 265px;

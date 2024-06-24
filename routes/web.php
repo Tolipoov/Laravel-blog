@@ -41,7 +41,9 @@ use App\Http\Controllers\Personal\Liked\DeleteController as LikedDeleteControlle
 use App\Http\Controllers\Personal\Liked\LikedController;
 
 use App\Http\Controllers\Personal\Main\MainController as MainMainController;
-use App\Http\Controllers\PostController;
+use App\Http\Controllers\Post\Comment\StoreCommentController;
+use App\Http\Controllers\Post\PostController as PostPostController;
+use App\Http\Controllers\Post\SinglePostController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -56,24 +58,33 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['namespace' => 'Main'], function () {
+
+
+Route::group(['namespace' => 'Main' ], function () {
     Route::get('/', [IndexController::class, 'index'])->name('main.index');
     Route::get('/about', [AboutController::class, 'index'])->name('about.index');
-    Route::get('/blog', [PostController::class, 'index'])->name('blog.index');
+    Route::get('/blog', [PostPostController::class, 'index'])->name('blog.index');
+    Route::get('/blog/{post}', [SinglePostController::class, 'index'])->name('blog.single');
     Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
+   
+    //Comment Store
+    Route::group(['namespace' => 'Comment', 'prefix' => '{post}/comments'], function () {
+        Route::post('/', [StoreCommentController::class, 'index'])->name('post.comment.store');
+    });
 });
 
 Route::group(['namespace' => 'Personal', 'prefix' => 'personal', 'middleware' => ['auth', 'verified'] ], function () {
-
     Route::group(['namespace' => 'Main', 'prefix' => 'main'], function () {
         Route::get('/', [MainMainController::class, 'index'])->name('personal.main.main');
     });
-
+    
+    // Like Route 
     Route::group(['namespace' => 'Liked', 'prefix' => 'liked'], function () {
         Route::get('/', [LikedController::class, 'index'])->name('personal.liked.index');
          Route::delete('/{post}', [LikedDeleteController::class, 'index'])->name('personal.liked.delete');
     });
 
+    // Comment Route 
     Route::group(['namespace' => 'Comment', 'prefix' => 'comment'], function () {
         Route::get('/', [CommentController::class, 'index'])->name('personal.comment.index');
         Route::get('/{comment}/edit', [EditCommentController::class, 'index'])->name('personal.comment.edit');
@@ -123,13 +134,13 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
 
     // User Route 
     Route::group(['namespace' => 'User', 'prefix' => 'users'], function () {
-    Route::get('/', [UserIndexController::class, 'index'])->name('admin.user.index');
-    Route::get('/create', [UserCreateController::class, 'index'])->name('admin.user.create');
-    Route::post('/', [UserStoreController::class, 'index'])->name('admin.user.store');
-    Route::get('/{user}', [UserShowController::class, 'index'])->name('admin.user.show');
-    Route::get('/{user}/edit', [UserEditController::class, 'index'])->name('admin.user.edit');
-    Route::patch('/{user}', [UserUpdateController::class, 'index'])->name('admin.user.update');
-    Route::delete('/{user}', [UserDeleteController::class, 'index'])->name('admin.user.delete');
+        Route::get('/', [UserIndexController::class, 'index'])->name('admin.user.index');
+        Route::get('/create', [UserCreateController::class, 'index'])->name('admin.user.create');
+        Route::post('/', [UserStoreController::class, 'index'])->name('admin.user.store');
+        Route::get('/{user}', [UserShowController::class, 'index'])->name('admin.user.show');
+        Route::get('/{user}/edit', [UserEditController::class, 'index'])->name('admin.user.edit');
+        Route::patch('/{user}', [UserUpdateController::class, 'index'])->name('admin.user.update');
+        Route::delete('/{user}', [UserDeleteController::class, 'index'])->name('admin.user.delete');
     });
    
 
